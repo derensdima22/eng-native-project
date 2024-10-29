@@ -13,6 +13,7 @@ import Administrator from "@assets/images/icons/profile/Administrator.svg";
 import Ban from "@assets/images/icons/profile/Ban.svg";
 import Unban from "@assets/images/icons/profile/Unban.svg";
 import KickOut from "@assets/images/icons/profile/KickOut.svg";
+import { ModalBox } from '../../ModalBox';
 
 interface ProfileModalUserProps {
   isModalVisible: boolean;
@@ -34,22 +35,18 @@ export const ProfileModalUser:FC<ProfileModalUserProps> = (props) => {
   }, [selectedUser?.role])
 
   return (
-    <Modal
-    isVisible={isModalVisible}
-    onBackdropPress={handleCloseModal}
-    onSwipeComplete={handleCloseModal}
-    swipeDirection="down"
-    style={styles.modal}
-    backdropOpacity={0.7}
-    animationIn="slideInUp"
-    animationOut="slideOutDown"
-  >
-    <View style={[styles.modalContent, { backgroundColor: isBanned ? "#F5E5E5" : "#F5F7F9"}]}>
+    <ModalBox
+      isModalVisible={isModalVisible}
+      handleCloseModal={handleCloseModal}
+      isBanned={isBanned}
+      styleModal={{
+        paddingHorizontal: 16,
+        paddingBottom: 16,
+        alignItems: 'flex-start',
+      }}
+    >
       {selectedUser && (
         <>
-          <View style={styles.verticalComponent}>
-            <View style={[styles.verticalContent, { backgroundColor: isBanned ? "#9F0000" : "#C9E0FA"}]}/>
-          </View>
           <View style={[styles.userDetailsContainer, { justifyContent: isBanned ? "space-between" : "flex-start" }]}>
             <View style={styles.userDetails}>
               <Avatar source={selectedUser.avatar ? { uri: selectedUser.avatar } : undefined} />
@@ -88,16 +85,17 @@ export const ProfileModalUser:FC<ProfileModalUserProps> = (props) => {
           </View>
         </>
       )}
-    </View>
-  </Modal>
+  </ModalBox>
   );
 };
 
 const styles = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
+    height: "100%",
     margin: 0,
     padding: 0,
+    position: "relative",
   },
   modalContent: {
     // borderTopWidth: 1,
@@ -107,6 +105,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     paddingHorizontal: 16,
     paddingBottom: 16,
+    paddingTop: 32,
     alignItems: 'flex-start',
   },
   verticalComponent: {
@@ -119,6 +118,9 @@ const styles = StyleSheet.create({
     color: "#9F0000",
   },
   verticalContent: {
+    position: "absolute",
+    top: 16,
+    alignSelf: 'center',
     marginBottom: 16,
     height: 3,
     width: 45,
