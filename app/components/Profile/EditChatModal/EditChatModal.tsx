@@ -7,7 +7,7 @@ import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 // Images
-import CameraIcon from "@assets/images/icons/editChat/Camera.svg";
+import { Camera as CameraIcon } from "@assets/images/icons";
 
 interface EditChatModalProps {
   isModalVisible: boolean;

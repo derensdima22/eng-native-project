@@ -4,9 +4,11 @@ import { MaterialIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
 import { Keyboard, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
-// Images
-import Photo from "@assets/images/icons/editChat/Photo.svg";
+// Components
 import { EditChatModal } from '../components/Profile/EditChatModal';
+
+// Images
+import { Photo } from "@assets/images/icons";
 
 
 export default function ProfileScreen() {

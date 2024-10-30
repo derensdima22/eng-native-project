@@ -13,11 +13,10 @@ import { ExampleData } from '@/app/(tabs)/data';
 
 // Components
 import { ProfileMemberUser } from '../ProfileMemberUser';
+import { ProfileModalUser } from '../ProfileModalUser';
 
 // Import Icons
-import ArrowRight from '@assets/images/icons/ArrowRight.svg';
-import AddUser from '@assets/images/icons/AddUser.svg';
-import { ProfileModalUser } from '../ProfileModalUser';
+import { ArrowRight, AddUser } from '@assets/images/icons';
 
 interface GroupInfoMembersProps {
   panY: Animated.Value;

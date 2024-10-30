@@ -7,13 +7,17 @@ import {
 import { ExampleData } from '@/app/(tabs)/data';
 import { Avatar, View, Text } from 'native-base';
 
-// Icons
-import Profile from "@assets/images/icons/profile/Profile.svg";
-import Administrator from "@assets/images/icons/profile/Administrator.svg";
-import Ban from "@assets/images/icons/profile/Ban.svg";
-import Unban from "@assets/images/icons/profile/Unban.svg";
-import KickOut from "@assets/images/icons/profile/KickOut.svg";
+// Components
 import { ModalBox } from '../../ModalBox';
+
+// Icons
+import {
+  Profile,
+  Administrator,
+  Ban,
+  Unban,
+  KickOut
+} from "@assets/images/icons";
 
 interface ProfileModalUserProps {
   isModalVisible: boolean;

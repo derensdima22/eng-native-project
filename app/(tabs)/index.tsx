@@ -9,18 +9,19 @@ import { GroupHeaderContainer } from "../components/Profile/GroupHeaderContainer
 import { GroupInfoMembers } from "../components/Profile/GroupInfoMembers";
 
 // Import Icons
-import Arrow from "../../assets/images/icons/Arrow.svg";
-import QRCode from "../../assets/images/icons/QRCode.svg";
+import { Arrow, QRCode } from "@assets/images/icons";
 
 // Data
 import { data } from "./data";
 import { NativeBaseProvider } from "native-base";
+import { useNavigation } from "expo-router";
 
 // Types
 type GestureEvent = PanGestureHandlerGestureEvent;
 
 
 export default function ProfileScreen() {
+  const navigation = useNavigation();
   const panY = useRef(new Animated.Value(0)).current;
   const [isEndReached, setIsEndReached] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -82,7 +83,7 @@ export default function ProfileScreen() {
           <Animated.View style={{ flex: 1 }}>
             <Animated.View style={[styles.header, { height: headerHeight }]}>
               <View style={styles.headerButtons}>
-                <TouchableOpacity><Arrow height={hp("4%")}/></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('editChat')}><Arrow height={hp("4%")}/></TouchableOpacity>
                 <TouchableOpacity><QRCode height={hp("4%")}/></TouchableOpacity>
               </View>
               <View style={{position: "relative"}}>

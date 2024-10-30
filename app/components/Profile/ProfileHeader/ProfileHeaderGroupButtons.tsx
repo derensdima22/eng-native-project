@@ -4,11 +4,13 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-nat
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
 // import Icons
-import Bell from "../../../../assets/images/icons/Bell.svg";
-import MuteBell from "../../../../assets/images/icons/MuteBell.svg";
-import Search from "../../../../assets/images/icons/Search.svg";
-import Leave from "../../../../assets/images/icons/Leave.svg";
-import Report from "../../../../assets/images/icons/Report.svg";
+import {
+  Bell,
+  MuteBell,
+  Search,
+  Leave,
+  Report,
+} from "@assets/images/icons";
 
 interface ProfileHeaderGroupButtonsProps {
   panY: Animated.Value;

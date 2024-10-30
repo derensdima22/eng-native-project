@@ -3,9 +3,7 @@ import { Animated, View, Text, TouchableOpacity, StyleSheet } from 'react-native
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 // Import Icons
-import Star from "@assets/images/icons/Star.svg";
-import Favorite from "@assets/images/icons/Favorite.svg";
-import Dots from "@assets/images/icons/Dots.svg";
+import { Star, Favorite, Dots } from "@assets/images/icons";
 
 interface GroupHeaderContainerProps {
   panY: Animated.Value;
