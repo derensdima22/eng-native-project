@@ -1,6 +1,10 @@
 import React from 'react';
 import { Avatar, View, Text } from 'native-base';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+
+import { styles } from "./ProfileMemberUserStyle";
+
+// Data
 import { ExampleData } from '@/app/(tabs)/data';
 
 interface ProfileMemberUserProps {
@@ -24,22 +28,3 @@ export const ProfileMemberUser = (props: ProfileMemberUserProps) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  userRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 5,
-  },
-  userDetails: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  userInfo: {
-    marginLeft: 10,
-  },
-  userRole: {
-    color: '#8F8F8F',
-  },
-});
