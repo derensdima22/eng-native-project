@@ -6,13 +6,13 @@ export const useAnimatedButtonStyles = (panY: Animated.Value) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const buttonHeight = panY.interpolate({
-    inputRange: [-hp("25%"), 0],
+    inputRange: [-hp("15%"), 0],
     outputRange: [0, wp("15%")],
     extrapolate: "clamp",
   });
 
   const opacity = panY.interpolate({
-    inputRange: [-hp("23%"), 0],
+    inputRange: [-hp("24%"), 0],
     outputRange: [0, 1],
     extrapolate: "clamp",
   });

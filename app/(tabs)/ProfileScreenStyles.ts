@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: wp("9%"),
     paddingBottom: hp("5%"),
     paddingTop: hp("5%"),
-    position: "relative",
     width: "100%",
     overflow: "hidden",
     justifyContent: "space-between",

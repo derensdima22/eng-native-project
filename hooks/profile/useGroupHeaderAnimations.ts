@@ -16,7 +16,7 @@ export const useGroupHeaderAnimations = (panY: Animated.Value) => {
 
   const containerTranslateY = panY.interpolate({
     inputRange: [-hp("25%"), 0],
-    outputRange: [hp("5.5%"), 0],
+    outputRange: [hp("3%"), 0],
     extrapolate: "clamp",
   });
 
