@@ -5,3 +5,6 @@ export * from "./ProfileHeader";
 export * from "./ProfileMemberUser";
 export * from "./ProfileModalUser";
 export * from "./ProfileEditChat";
+export * from "./ProfileModalBackground";
+export * from "./ProfileWallpaper";
+export * from "./ProfileChangeColor";

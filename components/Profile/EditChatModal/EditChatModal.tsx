@@ -21,11 +21,11 @@ import { Camera as CameraIcon } from "@assets/images/icons";
 interface EditChatModalProps {
   isModalVisible: boolean;
   handleCloseModal: () => void;
-  changeAvatarChat: (uri: string) => void;
+  changeImage: (uri: string) => void;
 }
 
 export const EditChatModal: FC<EditChatModalProps> = (props) => {
-  const { isModalVisible, handleCloseModal, changeAvatarChat } = props;
+  const { isModalVisible, handleCloseModal, changeImage } = props;
   const [permission, requestPermission] = useCameraPermissions();
 
   const {
@@ -73,7 +73,7 @@ export const EditChatModal: FC<EditChatModalProps> = (props) => {
             <TouchableOpacity
               key={image}
               style={styles.photoPlaceholder}
-              onPress={() => changeAvatarChat(image)}
+              onPress={() => changeImage(image)}
             >
               <Image source={{ uri: image }} alt="Selected Image" style={styles.previewImage} />
             </TouchableOpacity>

@@ -50,7 +50,6 @@ export default function ProfileScreen() {
   return (
     <NativeBaseProvider>
       {/* !!!!!!!!!!!!!!!!!!!!!!!! */}
-      <ScrollView scrollEnabled={isEndReached}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <PanGestureHandler
           onGestureEvent={onGestureEvent}
@@ -85,7 +84,6 @@ export default function ProfileScreen() {
       </GestureHandlerRootView>
 
       <ProfileEditChat isEditVisible={isEditVisible} handleCloseEdit={handleCloseEdit}/>
-      </ScrollView>
     </NativeBaseProvider>
   );
 };

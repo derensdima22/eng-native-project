@@ -10,6 +10,7 @@ export { default as QRCode } from "./QRCode.svg";
 export { default as Report } from "./Report.svg";
 export { default as Search } from "./Search.svg";
 export { default as Star } from "./Star.svg";
+export { default as CheckCircle } from "./CheckCircle.svg";
 
 export * from "./profile";
 export * from "./editChat";

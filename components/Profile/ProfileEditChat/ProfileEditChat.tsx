@@ -4,9 +4,10 @@ import { MaterialIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
 import { Keyboard, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import Modal from 'react-native-modal';
+import Constants from 'expo-constants';
 
 // Components
-import { EditChatModal } from '@components/Profile';
+import { EditChatModal, ProfileModalBackground } from '@components/Profile';
 
 // Images
 import { Photo } from "@assets/images/icons";
@@ -21,6 +22,7 @@ export const ProfileEditChat: FC<ProfileEditChatProps> = (props) => {
   const { isEditVisible, handleCloseEdit } = props;
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [isModalChangeBackground, setIsModalChangeBackground] = useState<boolean>(false);
   const [avatarChat, setAvatarChat] = useState<string>("");
   
   const handlePhotoPress = () => {
@@ -34,7 +36,15 @@ export const ProfileEditChat: FC<ProfileEditChatProps> = (props) => {
   const changeAvatarChat = (uri: string) => {
     setAvatarChat(uri);
     handleCloseModal();
-  }
+  };
+
+  const openChangeBackground = () => {
+    setIsModalChangeBackground(true);
+  };
+
+  const closeChangeBackground = () => {
+    setIsModalChangeBackground(false);
+  };
 
   return (
     <NativeBaseProvider>
@@ -46,8 +56,9 @@ export const ProfileEditChat: FC<ProfileEditChatProps> = (props) => {
         animationIn="slideInUp"
         animationOut="slideOutDown"
         style={{padding: 0, margin: 0}}
+        statusBarTranslucent={true}
       >
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{flex: 1}}>
           <Center flex={1} bg="#e9eff6">
             <Box
               bg="white"
@@ -110,14 +121,18 @@ export const ProfileEditChat: FC<ProfileEditChatProps> = (props) => {
 
               <Divider />
 
+   
               <VStack space={4}>
-                <HStack alignItems="center" justifyContent="space-between">
-                  <HStack space={2} alignItems="center">
-                    <Icon as={<FontAwesome name="image" />} size="md" color="blue.600" />
-                    <Text fontSize="md">Set a Wallpaper</Text>
+                <TouchableOpacity onPress={openChangeBackground}>
+                  <HStack alignItems="center" justifyContent="space-between">
+                    <HStack space={2} alignItems="center">
+                      <Icon as={<FontAwesome name="image" />} size="md" color="blue.600" />
+                      <Text fontSize="md">Set a Wallpaper</Text>
+                    </HStack>
+                    <Icon as={<MaterialIcons name="arrow-forward-ios" />} size="xs" color="gray.400" />
                   </HStack>
-                  <Icon as={<MaterialIcons name="arrow-forward-ios" />} size="xs" color="gray.400" />
-                </HStack>
+                </TouchableOpacity>
+    
 
                 <Divider />
                 
@@ -174,7 +189,12 @@ export const ProfileEditChat: FC<ProfileEditChatProps> = (props) => {
         <EditChatModal
           isModalVisible={isModalVisible}
           handleCloseModal={handleCloseModal}
-          changeAvatarChat={changeAvatarChat}
+          changeImage={changeAvatarChat}
+        />
+
+        <ProfileModalBackground
+          closeChangeBackground={closeChangeBackground}
+          isModalChangeBackground={isModalChangeBackground}
         />
       </Modal>
     </NativeBaseProvider>
