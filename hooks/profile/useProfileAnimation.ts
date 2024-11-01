@@ -12,7 +12,7 @@ export const useProfileAnimation = () => {
   const midpoint = -hp("12.5%");
 
   const headerHeight = panY.interpolate({
-    inputRange: [-hp("20%"), 0],
+    inputRange: [-hp("25%"), 0],
     outputRange: [hp("24%"), hp("57%")],
     extrapolate: "clamp",
   });
