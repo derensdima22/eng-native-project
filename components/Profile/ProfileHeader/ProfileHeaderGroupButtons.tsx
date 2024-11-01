@@ -32,48 +32,60 @@ export const ProfileHeaderGroupButtons: FC<ProfileHeaderGroupButtonsProps> = (pr
       {isVisible && <>
         <View>
         <TouchableHighlight
-          style={[styles.iconButtons, { height: buttonHeight, backgroundColor: mute ? "#0052CD" : "#50504E" }]}
+          style={[styles.iconButtons, { height: buttonHeight }]}
           onPress={() => console.log("mute")}
-          >
-          <Animated.View style={{ transform: [{ scale: iconScale }] }}>
-            {mute ? <MuteBell /> : <Bell />}
-          </Animated.View>
+        >
+          <>
+            <View style={[styles.backgroundLayer, { backgroundColor: mute ? "#0052CD" : "#50504E" }]} />
+            <Animated.View style={[styles.icon, { transform: [{ scale: iconScale }] }]}>
+              {mute ? <MuteBell /> : <Bell />}
+            </Animated.View>
+          </>
         </TouchableHighlight>
         <Text style={styles.textBottom}>Muted</Text>
       </View>
 
       {isVisible && <View>
         <TouchableHighlight
-          style={[styles.iconButtons, { height: buttonHeight, backgroundColor: "#50504E" }]}
+          style={[styles.iconButtons, { height: buttonHeight }]}
           onPress={() => console.log("Search")}
         >
-          <Animated.View style={{ transform: [{ scale: iconScale }] }}>
-            <Search />
-          </Animated.View>
+          <>
+            <View style={styles.backgroundLayer} />
+            <Animated.View style={[styles.icon, { transform: [{ scale: iconScale }] }]}>
+              <Search />
+            </Animated.View>
+          </>
         </TouchableHighlight>
         <Text style={styles.textBottom}>Search</Text>
       </View>}
 
       <View>
         <TouchableHighlight
-          style={[styles.iconButtons, { height: buttonHeight, backgroundColor: "#50504E" }]}
+          style={[styles.iconButtons, { height: buttonHeight }]}
           onPress={() => console.log("Leave")}
         >
-          <Animated.View style={{ transform: [{ scale: iconScale }] }}>
-            <Leave />
-          </Animated.View>
+          <>
+            <View style={styles.backgroundLayer} />
+            <Animated.View style={[styles.icon, { transform: [{ scale: iconScale }] }]}>
+              <Leave />
+            </Animated.View>
+          </>  
         </TouchableHighlight>
         <Text style={styles.textBottom}>Leave</Text>
       </View>
 
       <View>
         <TouchableHighlight
-          style={[styles.iconButtons, { height: buttonHeight, backgroundColor: "#50504E" }]}
+          style={[styles.iconButtons, { height: buttonHeight }]}
           onPress={() => console.log("Report")}
         >
-          <Animated.View style={{ transform: [{ scale: iconScale }]}}>
-            <Report />
-          </Animated.View>
+          <>
+            <View style={styles.backgroundLayer} />
+            <Animated.View style={[styles.icon, { transform: [{ scale: iconScale }] }]}>
+              <Report />
+            </Animated.View>
+          </>
         </TouchableHighlight>
         <Text style={styles.textBottom}>Report</Text>
       </View>
