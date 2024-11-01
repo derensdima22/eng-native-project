@@ -44,8 +44,8 @@ export const ProfileModalBackground: FC<ProfileModalBackgroundType> = (props) =>
       isVisible={isModalChangeBackground}
       onSwipeComplete={closeChangeBackground}
       backdropOpacity={0.7}
-      animationIn="slideInDown"
-      animationOut="slideOutDown"
+      animationIn="slideInRight"
+      animationOut="slideOutRight"
       style={{ padding: 0, margin: 0 }}
       statusBarTranslucent={true}
     >
