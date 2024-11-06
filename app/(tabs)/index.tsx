@@ -9,7 +9,8 @@ import {
   ProfileHeaderGroupButtons,
   GroupHeaderContainer,
   GroupInfoMembers,
-  ProfileEditChat
+  ProfileEditChat,
+  ProfileContainer
 } from "@components/Profile";
 
 // Hooks
@@ -48,43 +49,25 @@ export default function ProfileScreen() {
   };
 
   return (
-    <NativeBaseProvider>
-      {/* !!!!!!!!!!!!!!!!!!!!!!!! */}
-      <ScrollView height="100%">
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <PanGestureHandler
-          onGestureEvent={onGestureEvent}
-          onHandlerStateChange={onHandlerStateChange}
-        >
-          <Animated.View style={{ flex: 1 }}>
-            <Animated.View style={[styles.header, { height: headerHeight }]}>
-              <View style={styles.headerButtons}>
-                <TouchableOpacity><Arrow height={hp("4%")}/></TouchableOpacity>
-                <TouchableOpacity><QRCode height={hp("4%")}/></TouchableOpacity>
-              </View>
-              <View style={{position: "relative"}}>
-                <GroupHeaderContainer handleOpenEditModal={handleOpenEditModal} panY={panY} isEndReached={isEndReached} />
-                <ProfileHeaderGroupButtons panY={panY} />
-              </View>
-            </Animated.View>
-
-            <Animated.Image
-                source={require("../../assets/images/example.webp")}
-                style={[styles.headerImage, { opacity: imageOpacity }]}
-                resizeMode="cover"
-              />
-
-            <GroupInfoMembers
-              panY={panY}
-              description="TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText"
-              members={3}
-              users= {data}
-            />
-          </Animated.View>
-        </PanGestureHandler>
-      </GestureHandlerRootView>
-      </ScrollView>
+    <ProfileContainer
+      handleOpenEditModal={handleOpenEditModal}
+      panY={panY}
+      isEndReached={isEndReached}
+      headerHeight={headerHeight}
+      imageOpacity={imageOpacity}
+      onGestureEvent={onGestureEvent}
+      onHandlerStateChange={onHandlerStateChange}
+      background="../../assets/images/example.webp"
+    >
+      <GroupInfoMembers
+        panY={panY}
+        description="TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText"
+        members={3}
+        users={data}
+      />
       <ProfileEditChat isEditVisible={isEditVisible} handleCloseEdit={handleCloseEdit}/>
-    </NativeBaseProvider>
+    </ProfileContainer>
+
+
   );
 };

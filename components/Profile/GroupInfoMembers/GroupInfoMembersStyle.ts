@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#E8EDF2',
     height: hp("100%"),
     paddingHorizontal: 30,
+    zIndex: 101
   },
   descriptionContainer: {
     backgroundColor: '#FFFFFF',

@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     padding: 0,
     margin: 0,
+    
   },
   userContainer: {
     flexDirection: "row",

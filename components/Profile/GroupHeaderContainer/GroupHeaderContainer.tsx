@@ -1,6 +1,10 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Animated, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { Menu, Pressable } from 'native-base';
+
+// Components
+import { ListSettings } from '@/components/ListSettings';
 
 // Hooks
 import { useGroupHeaderAnimations } from '@/hooks/profile';
@@ -10,6 +14,9 @@ import { Star, Favorite, Dots } from "@assets/images/icons";
 
 // Styles
 import { styles } from "./GroupHeaderContainerStyle";
+
+// Data
+import { OptionsSettingProfile } from '@/constants/OptionsSettingProfile';
 
 interface GroupHeaderContainerProps {
   panY: Animated.Value;
@@ -22,6 +29,7 @@ export const GroupHeaderContainer: FC<GroupHeaderContainerProps> = (props) => {
   const { avatarOpacity, avatarTranslateX, containerTranslateY } = useGroupHeaderAnimations(panY);
 
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const favoriteIcon = useMemo(() => {
     return isFavorite
@@ -30,12 +38,37 @@ export const GroupHeaderContainer: FC<GroupHeaderContainerProps> = (props) => {
   }, [isFavorite]);
 
   const handlePress = () => {
-    if (isEndReached) {
-      console.log("Filled Star pressed");
-      handleOpenEditModal && handleOpenEditModal();
-    } else {
+    if (!isEndReached) {
       console.log("Star pressed");
       setIsFavorite(!isFavorite);
+    }
+  };
+
+  const actionInteractions = (type: string) => {
+    switch (type) {
+      case "edit":
+        console.log( "edit");
+        handleOpenEditModal && handleOpenEditModal();
+        setIsOpen(false);
+        break;
+      case "mute":
+        console.log( "mute");
+        setIsOpen(false);
+        break;
+      case "search":
+        console.log( "search");
+        break;
+      case "favourites":
+        console.log( "favourites");
+        break;
+      case "report":
+        console.log( "report");
+        break;
+      case "delete":
+        console.log( "delete");
+        break;
+      default:
+        console.log( "default");
     }
   };
 
@@ -56,11 +89,26 @@ export const GroupHeaderContainer: FC<GroupHeaderContainerProps> = (props) => {
           <Text style={styles.members}>3 members</Text>
         </Animated.View>
       </View>
-      <TouchableOpacity style={styles.headerStar} onPress={handlePress}>
       {isEndReached
-        ? <Dots height={hp("3%")} width={hp("3%")}/>
-        : favoriteIcon}
-      </TouchableOpacity>
+        ? <Menu
+            isOpen={isOpen}
+            onOpen={() => setIsOpen(true)}
+            onClose={() => setIsOpen(false)}
+            borderRadius={12}
+            padding={0}
+            placement="bottom right"
+            trigger={triggerProps => {
+              return <Pressable style={styles.headerStar} accessibilityLabel="More options menu" {...triggerProps}>
+                <Dots />
+              </Pressable>;
+        }}>
+        <ListSettings
+          width={180}
+          data={OptionsSettingProfile}
+          actionInteractions={actionInteractions}
+        />
+        </Menu>
+        : <TouchableOpacity style={styles.headerStar} onPress={handlePress}>{favoriteIcon}</TouchableOpacity>}
     </Animated.View>
   )
 

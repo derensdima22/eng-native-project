@@ -19,11 +19,6 @@ export const ProfileChangeColor = () => {
   };
 
   return (
-    // <View>
-    //   {colorsChat.map((color) => (
-    //     <View key={color} style={{backgroundColor: color, width: 20, height: 20}}/>
-    //   ))}
-    // </View>
     <FlatList
       data={colorsChat}
       numColumns={4}

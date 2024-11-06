@@ -9,17 +9,23 @@ export const useProfileAnimation = () => {
   const [isEndReached, setIsEndReached] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
-  const midpoint = -hp("12.5%");
+  const midpoint = -hp("20%");
 
   const headerHeight = panY.interpolate({
     inputRange: [-hp("25%"), 0],
-    outputRange: [hp("20%"), hp("57%")],
+    outputRange: [hp("21%"), hp("57%")],
     extrapolate: "clamp",
   });
 
   const imageOpacity = panY.interpolate({
     inputRange: [-hp("25%"), 0],
     outputRange: [0.4, 1],
+    extrapolate: "clamp",
+  });
+
+  const blurAmount = panY.interpolate({
+    inputRange: [-hp("25%"), 0],
+    outputRange: [10, 0],
     extrapolate: "clamp",
   });
 
@@ -62,6 +68,7 @@ export const useProfileAnimation = () => {
     headerHeight,
     imageOpacity,
     onGestureEvent,
+    blurAmount,
     onHandlerStateChange,
   };
 };

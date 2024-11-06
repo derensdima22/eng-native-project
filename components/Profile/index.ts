@@ -8,3 +8,4 @@ export * from "./ProfileEditChat";
 export * from "./ProfileModalBackground";
 export * from "./ProfileWallpaper";
 export * from "./ProfileChangeColor";
+export * from "./ProfileContainer";

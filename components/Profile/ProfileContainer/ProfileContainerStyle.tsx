@@ -36,4 +36,4 @@ export const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#000000"
   },
-});
+})

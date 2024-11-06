@@ -23,6 +23,7 @@ export const ModalBox: FC<ModalBoxProps> = (props) => {
       backdropOpacity={0.7}
       animationIn="slideInUp"
       animationOut="slideOutDown"
+      statusBarTranslucent={true}
     >
       <View style={[styleModal, styles.modalContent, { backgroundColor: isBanned ? "#F5E5E5" : "#F5F7F9"}]}>
         <View style={[styles.verticalContent, { backgroundColor: isBanned ? "#9F0000" : "#C9E0FA"}]}/>
