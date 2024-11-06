@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import { Animated, View, TouchableOpacity } from "react-native";
-import { GestureHandlerRootView, PanGestureHandler, PanGestureHandlerGestureEvent, State } from "react-native-gesture-handler";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { NativeBaseProvider, ScrollView } from "native-base";
+import { PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
 
 // Components
 import {
-  ProfileHeaderGroupButtons,
   GroupHeaderContainer,
   GroupInfoMembers,
   ProfileEditChat,
-  ProfileContainer
+  ProfileContainer,
 } from "@components/Profile";
 
 // Hooks
@@ -25,6 +21,9 @@ import { styles } from './ProfileScreenStyles';
 // Data
 import { data } from "./data";
 
+// Buttons
+import { chatButtons } from "@/constants/ProfileButtons";
+
 // Types
 type GestureEvent = PanGestureHandlerGestureEvent;
 
@@ -38,6 +37,7 @@ export default function ProfileScreen() {
     onGestureEvent,
     onHandlerStateChange,
   } = useProfileAnimation();
+  
   const [isEditVisible, setIsEditVisible] = useState(false);
 
   const handleCloseEdit = () => {
@@ -50,14 +50,14 @@ export default function ProfileScreen() {
 
   return (
     <ProfileContainer
-      handleOpenEditModal={handleOpenEditModal}
       panY={panY}
-      isEndReached={isEndReached}
+      chatButtons={chatButtons}
       headerHeight={headerHeight}
       imageOpacity={imageOpacity}
       onGestureEvent={onGestureEvent}
       onHandlerStateChange={onHandlerStateChange}
       background="../../assets/images/example.webp"
+      componentProp={<GroupHeaderContainer handleOpenEditModal={handleOpenEditModal} panY={panY} isEndReached={isEndReached} />}
     >
       <GroupInfoMembers
         panY={panY}
@@ -65,9 +65,7 @@ export default function ProfileScreen() {
         members={3}
         users={data}
       />
-      <ProfileEditChat isEditVisible={isEditVisible} handleCloseEdit={handleCloseEdit}/>
+      <ProfileEditChat isEditVisible={isEditVisible} handleCloseEdit={handleCloseEdit} />
     </ProfileContainer>
-
-
   );
 };

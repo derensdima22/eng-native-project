@@ -4,6 +4,17 @@ export type ExampleData = {
   avatar: string;
   status: "online" | "offline";
   role: string;
+};
+
+export type DefaultType = 'items' |'collections' | 'documents';
+
+export type AlternateType = 'all' |'received' | 'sent';
+
+export type dataUserProfileAllType<T = DefaultType | AlternateType> = {
+  id: string;
+  title: string;
+  date: string;
+  type: T;
 }
 
 export const data: ExampleData[] = [
@@ -84,4 +95,15 @@ export const data: ExampleData[] = [
     status: "offline",
     role: "member",
   },
-]
+];
+
+export const tabsHeaderDefault: DefaultType[] = ['items', 'collections', 'documents'];
+
+export const tabsHeaderTransactions: AlternateType[] = ['all', 'received', 'sent'];
+
+export const dataUserProfileAll: dataUserProfileAllType<DefaultType | AlternateType>[] = [
+  { id: '1', title: 'Legal contract', date: '17.10.23', type: 'all' },
+  { id: '2', title: 'Legal contract', date: '17.10.23', type: 'all' },
+  { id: '3', title: 'Legal contract', date: '17.10.23', type: 'all' },
+  { id: '4', title: 'Legal contract', date: '17.10.23', type: 'all' },
+];

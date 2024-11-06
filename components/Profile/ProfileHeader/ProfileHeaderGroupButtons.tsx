@@ -18,77 +18,40 @@ import { useAnimatedButtonStyles } from '@/hooks/profile';
 // Styles
 import { styles } from "./ProfileHeaderGroupButtonsStyle";
 
+// Data
+import { ProfileButtonType, chatButtons } from '@/constants/ProfileButtons';
+
 interface ProfileHeaderGroupButtonsProps {
   panY: Animated.Value;
   mute?: boolean;
-}
+  buttons: ProfileButtonType[];
+};
 
 export const ProfileHeaderGroupButtons: FC<ProfileHeaderGroupButtonsProps> = (props) => {
-  const { panY, mute = true } = props;
+  const { panY, mute = true, buttons } = props;
   const { buttonHeight, opacity, iconScale, isVisible } = useAnimatedButtonStyles(panY);
 
   return (
     <Animated.View style={[styles.buttonsGroup, { opacity }]}>
       {isVisible && <>
-        <View>
-        <TouchableHighlight
-          style={[styles.iconButtons, { height: buttonHeight }]}
-          onPress={() => console.log("mute")}
-        >
-          <>
-            <View style={[styles.backgroundLayer, { backgroundColor: mute ? "#0052CD" : "#50504E" }]} />
-            <Animated.View style={[styles.icon, { transform: [{ scale: iconScale }] }]}>
-              {mute ? <MuteBell /> : <Bell />}
-            </Animated.View>
-          </>
-        </TouchableHighlight>
-        <Text style={styles.textBottom}>Muted</Text>
-      </View>
-
-      {isVisible && <View>
-        <TouchableHighlight
-          style={[styles.iconButtons, { height: buttonHeight }]}
-          onPress={() => console.log("Search")}
-        >
-          <>
-            <View style={styles.backgroundLayer} />
-            <Animated.View style={[styles.icon, { transform: [{ scale: iconScale }] }]}>
-              <Search />
-            </Animated.View>
-          </>
-        </TouchableHighlight>
-        <Text style={styles.textBottom}>Search</Text>
-      </View>}
-
-      <View>
-        <TouchableHighlight
-          style={[styles.iconButtons, { height: buttonHeight }]}
-          onPress={() => console.log("Leave")}
-        >
-          <>
-            <View style={styles.backgroundLayer} />
-            <Animated.View style={[styles.icon, { transform: [{ scale: iconScale }] }]}>
-              <Leave />
-            </Animated.View>
-          </>  
-        </TouchableHighlight>
-        <Text style={styles.textBottom}>Leave</Text>
-      </View>
-
-      <View>
-        <TouchableHighlight
-          style={[styles.iconButtons, { height: buttonHeight }]}
-          onPress={() => console.log("Report")}
-        >
-          <>
-            <View style={styles.backgroundLayer} />
-            <Animated.View style={[styles.icon, { transform: [{ scale: iconScale }] }]}>
-              <Report />
-            </Animated.View>
-          </>
-        </TouchableHighlight>
-        <Text style={styles.textBottom}>Report</Text>
-      </View>
+        {buttons.map(({id, image: Image, imageMute: ImageMuted, name, nameMuted}) => (
+          <View key={id}>
+            <TouchableHighlight
+              style={[styles.iconButtons, { height: buttonHeight }]}
+              onPress={() => console.log("mute")}
+            >
+              <>
+                <View style={[styles.backgroundLayer, { backgroundColor: mute && id === "muted"  ? "#0052CD" : "#50504E" }]} />
+                <Animated.View style={[styles.icon, { transform: [{ scale: iconScale }] }]}>
+                  {mute && id === "muted" && ImageMuted ? <ImageMuted /> : <Image />}
+                </Animated.View>
+              </>
+            </TouchableHighlight>
+            <Text style={styles.textBottom}>
+              {mute && id === "muted" ? nameMuted : name}
+            </Text>
+          </View>
+        ))}
       </>}
   </Animated.View>
   );

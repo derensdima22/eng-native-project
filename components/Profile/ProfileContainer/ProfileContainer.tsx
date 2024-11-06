@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { ComponentType, FC, ReactNode, useState } from "react";
 import { Animated, View, TouchableOpacity } from "react-native";
 import { GestureHandlerRootView, PanGestureHandler, PanGestureHandlerGestureEvent, State } from "react-native-gesture-handler";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -21,27 +21,30 @@ import { useProfileAnimation } from "@/hooks/profile";
 // Styles
 import { styles } from "./ProfileContainerStyle";
 
+// Buttons
+import { ProfileButtonType } from "@/constants/ProfileButtons";
+
 interface ProfileContainerType {
   panY: Animated.Value;
   background: string;
-  handleOpenEditModal: () => void;
   children: ReactNode;
-  isEndReached: boolean;
-  headerHeight: Animated.AnimatedInterpolation<string | number>
-  imageOpacity: Animated.AnimatedInterpolation<string | number>
+  chatButtons: ProfileButtonType[];
+  headerHeight: Animated.AnimatedInterpolation<string | number>;
+  imageOpacity: Animated.AnimatedInterpolation<string | number>;
   onGestureEvent: (...args: any[]) => void;
-  onHandlerStateChange: (event: PanGestureHandlerGestureEvent) => void
+  onHandlerStateChange: (event: PanGestureHandlerGestureEvent) => void;
+  componentProp: ReactNode;
 }
 
 export const ProfileContainer: FC<ProfileContainerType> = (props) => {
   const {
     panY,
-    isEndReached,
+    chatButtons,
     headerHeight,
     imageOpacity,
     onGestureEvent,
     onHandlerStateChange,
-    handleOpenEditModal,
+    componentProp: ComponentProp,
     children
   } = props;
   
@@ -60,8 +63,8 @@ export const ProfileContainer: FC<ProfileContainerType> = (props) => {
                   <TouchableOpacity><QRCode height={hp("4%")}/></TouchableOpacity>
                 </View>
                 <View style={{position: "relative"}}>
-                  <GroupHeaderContainer handleOpenEditModal={handleOpenEditModal} panY={panY} isEndReached={isEndReached} />
-                  <ProfileHeaderGroupButtons panY={panY} />
+                  {ComponentProp}
+                  <ProfileHeaderGroupButtons panY={panY} buttons={chatButtons} />
                 </View>
               </Animated.View>
 

@@ -1,26 +1,73 @@
-import { StyleSheet, Image, Platform } from 'react-native';
+import React, { useState } from "react";
 
-import { View, Text, NativeBaseProvider } from 'native-base';
+// Components
+import {
+  GroupInfoMembers,
+  ProfileEditChat,
+  ProfileContainer,
+  GroupHeaderContainerProfile,
+  TabContentSection,
+  TabsItems
+} from "@components/Profile";
+
+// Hooks
+import { useProfileAnimation } from '@hooks/profile/useProfileAnimation';
+
+// Styles
+import { styles } from './ProfileScreenStyles';
+
+// Data
+import { dataUserProfileAll } from "./data";
+
+// Buttons
+import { profileButtons } from "@/constants/ProfileButtons";
+
 
 export default function TabTwoScreen() {
-  return (
-    <NativeBaseProvider>
-      <View>
-        <Text>Hi</Text>
-      </View>
-    </NativeBaseProvider>
-  );
-}
+  const {
+    panY,
+    headerHeight,
+    isEndReached,
+    imageOpacity,
+    onGestureEvent,
+    onHandlerStateChange,
+    triggerAnimationToEnd,
+  } = useProfileAnimation();
+  
+  const [isViewTransition, setIsViewTransition] = useState<boolean>(false);
 
-const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-});
+  const onTransaction = () => {
+    if (!isEndReached) {
+      triggerAnimationToEnd();
+    };
+    
+    setIsViewTransition(true);
+  }
+
+  return (
+    <ProfileContainer
+      panY={panY}
+      chatButtons={profileButtons}
+      headerHeight={headerHeight}
+      imageOpacity={imageOpacity}
+      onGestureEvent={onGestureEvent}
+      onHandlerStateChange={onHandlerStateChange}
+      background="../../assets/images/example.webp"
+      componentProp={
+        <GroupHeaderContainerProfile
+          panY={panY}
+          numberCoin={120}
+          secondNumberCoin={14}
+          onTransaction={onTransaction}
+        />
+      }
+    >
+      <TabContentSection
+        panY={panY}
+        about="TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText"
+        data={dataUserProfileAll}
+        defaultTab="all"
+      />
+    </ProfileContainer>
+  );
+};

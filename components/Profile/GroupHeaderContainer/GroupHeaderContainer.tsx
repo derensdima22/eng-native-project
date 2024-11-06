@@ -4,7 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-nat
 import { Menu, Pressable } from 'native-base';
 
 // Components
-import { ListSettings } from '@/components/ListSettings';
+import { ListSettings } from '@/components/SettingsList';
 
 // Hooks
 import { useGroupHeaderAnimations } from '@/hooks/profile';
@@ -17,6 +17,7 @@ import { styles } from "./GroupHeaderContainerStyle";
 
 // Data
 import { OptionsSettingProfile } from '@/constants/OptionsSettingProfile';
+import { MenuList } from '@/components/MenuList';
 
 interface GroupHeaderContainerProps {
   panY: Animated.Value;
@@ -90,24 +91,12 @@ export const GroupHeaderContainer: FC<GroupHeaderContainerProps> = (props) => {
         </Animated.View>
       </View>
       {isEndReached
-        ? <Menu
+        ? <MenuList
             isOpen={isOpen}
-            onOpen={() => setIsOpen(true)}
-            onClose={() => setIsOpen(false)}
-            borderRadius={12}
-            padding={0}
-            placement="bottom right"
-            trigger={triggerProps => {
-              return <Pressable style={styles.headerStar} accessibilityLabel="More options menu" {...triggerProps}>
-                <Dots />
-              </Pressable>;
-        }}>
-        <ListSettings
-          width={180}
-          data={OptionsSettingProfile}
-          actionInteractions={actionInteractions}
-        />
-        </Menu>
+            setIsOpen={setIsOpen}
+            image={Dots}
+            actionInteractions={actionInteractions}
+          />
         : <TouchableOpacity style={styles.headerStar} onPress={handlePress}>{favoriteIcon}</TouchableOpacity>}
     </Animated.View>
   )

@@ -9,3 +9,5 @@ export * from "./ProfileModalBackground";
 export * from "./ProfileWallpaper";
 export * from "./ProfileChangeColor";
 export * from "./ProfileContainer";
+export * from "./GroupHeaderContainerProfile";
+export * from "./TabContentSection";

@@ -62,6 +62,20 @@ export const useProfileAnimation = () => {
     }
   };
 
+  const triggerAnimationToEnd = () => {
+    panY.setOffset(panY._value);
+    panY.setValue(0);
+
+    Animated.spring(panY, {
+      toValue: -hp("25%"),
+      useNativeDriver: false,
+    }).start(() => {
+      setIsEndReached(true);
+      panY.setOffset(-hp("25%"));
+      panY.setValue(0);
+    });
+  };
+
   return {
     panY,
     isEndReached,
@@ -70,5 +84,6 @@ export const useProfileAnimation = () => {
     onGestureEvent,
     blurAmount,
     onHandlerStateChange,
+    triggerAnimationToEnd,
   };
 };
