@@ -8,12 +8,12 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-nat
 import { CheckCircle } from '@/assets/images/icons';
 
 const images = [
-  require("../../../assets/images/example/back-1.png"),
-  require("../../../assets/images/example/back-2.png"),
-  require("../../../assets/images/example/back-3.png"),
-  require("../../../assets/images/example/back-4.png"),
-  require("../../../assets/images/example/back-5.png"),
-  require("../../../assets/images/example/back-6.png"),
+  require("../../../../assets/images/example/back-2.png"),
+  require("../../../../assets/images/example/back-2.png"),
+  require("../../../../assets/images/example/back-3.png"),
+  require("../../../../assets/images/example/back-4.png"),
+  require("../../../../assets/images/example/back-5.png"),
+  require("../../../../assets/images/example/back-6.png"),
 ];
 
 export const ProfileWallpaper = () => {
@@ -43,7 +43,7 @@ export const ProfileWallpaper = () => {
           <View style={styles.card}>
             <Image
               alt="Background"
-              source={require("../../../assets/images/example/my-photo.png")}
+              source={require("../../../../assets/images/example/my-photo.png")}
               style={styles.image}
             />
             <View>

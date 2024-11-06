@@ -1,22 +1,17 @@
-import React, { ComponentType, FC, ReactNode, useState } from "react";
+import React, { FC, ReactNode } from "react";
 import { Animated, View, TouchableOpacity } from "react-native";
 import { GestureHandlerRootView, PanGestureHandler, PanGestureHandlerGestureEvent, State } from "react-native-gesture-handler";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { NativeBaseProvider, ScrollView } from "native-base";
+import { NativeBaseProvider } from "native-base";
 
 // Components
 import {
   ProfileHeaderGroupButtons,
-  GroupHeaderContainer,
-  GroupInfoMembers,
-  ProfileEditChat
 } from "@components/Profile";
 
 // Import Icons
 import { Arrow, QRCode } from "@assets/images/icons";
 
-// Hooks
-import { useProfileAnimation } from "@/hooks/profile";
 
 // Styles
 import { styles } from "./ProfileContainerStyle";
@@ -69,7 +64,7 @@ export const ProfileContainer: FC<ProfileContainerType> = (props) => {
               </Animated.View>
 
               <Animated.Image
-                source={require("../../../assets/images/example.webp")}
+                source={require("../../../../assets/images/example.webp")}
                 style={[styles.headerImage, { opacity: imageOpacity }]}
                 resizeMode="cover"
               />

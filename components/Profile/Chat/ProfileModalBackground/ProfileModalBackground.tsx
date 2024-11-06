@@ -22,7 +22,7 @@ export const ProfileModalBackground: FC<ProfileModalBackgroundType> = (props) =>
   const [tabLayouts, setTabLayouts] = useState<{ Wallpaper: number; Color: number }>({ Wallpaper: 0, Color: 0 });
 
   const translateX = useSharedValue(0);
-  const indicatorWidth = 89; // Фиксированная ширина индикатора
+  const indicatorWidth = 89;
 
   const handleTabPress = (tab: string) => {
     setActiveTab(tab);
@@ -53,7 +53,7 @@ export const ProfileModalBackground: FC<ProfileModalBackgroundType> = (props) =>
       <Image
         style={styles.headerImage}
         alt="Background"
-        source={require("../../../assets/images/example.webp")}
+        source={require("../../../../assets/images/example.webp")}
       />
       <View style={styles.header}>
         <TouchableOpacity onPress={closeChangeBackground}>

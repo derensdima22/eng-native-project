@@ -2,12 +2,9 @@ import React, { useState } from "react";
 
 // Components
 import {
-  GroupInfoMembers,
-  ProfileEditChat,
   ProfileContainer,
   GroupHeaderContainerProfile,
   TabContentSection,
-  TabsItems
 } from "@components/Profile";
 
 // Hooks

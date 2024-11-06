@@ -25,7 +25,7 @@ export const GroupHeaderContainerProfile: FC<GroupHeaderContainerProfileType> = 
     <Animated.View style={[styles.groupHeaderContainer, { transform: [{ translateY: containerTranslateY }] }]}>
     <View style={styles.userContainer}>
       <Animated.Image
-        source={require("../../../assets/images/example.webp")}
+        source={require("../../../../assets/images/example.webp")}
         style={[
           styles.avatar,
           {
